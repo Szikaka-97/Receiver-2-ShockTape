@@ -26,6 +26,9 @@ This plugin uses BepInEx configuration files, with two configs:
       Whether or not the plugin should replace stock tapes with modded ones
  - #### Flashbang tape chance
       Chance of spawning a modded tape instead of a stock one, replaces all tapes at 1 and no tapes at 0
+ - #### Difficulty
+      **Easy** paints booby-trapped tapes in distinct colors, making it easier to spot them
+      **Hard** makes the them barely distinguishable from regular tapes. Hope you brought a flashlight!
 
 <br>
 <br>
