@@ -12,6 +12,31 @@ namespace ShockTape {
 
 		public int instance_id;
 
+		private static Color[] easyColors = new Color[] {
+			new Color(0.7f, 0.7f, 0.7f),
+			new Color(0.1f, 0.1f, 0.8f),
+			new Color(0.8f, 0.1f, 0.8f),
+			new Color(0.1f, 0.1f, 0.1f)
+		};
+
+		public static Color getLabelColor() {
+			if (Plugin.difficulty.Value == "easy") {
+				return easyColors[UnityEngine.Random.Range(0, easyColors.Length)];
+			}
+			else {
+				return new Color(0.4f, 0.2f, 0);
+			}
+		}
+
+		public static Color getBodyColor() {
+			if (Plugin.difficulty.Value == "easy") {
+				return new Color(0.4f, 0.4f, 0.4f);
+			}
+			else {
+				return new Color(0.65f, 0.65f, 0.65f);
+			}
+		}
+
 		public static void GetReflectionMethods() {
 			instanceID = typeof(InventoryItem).GetField("item_instance_id", BindingFlags.Instance | BindingFlags.NonPublic);
 			getActiveItem = typeof(RuntimeTileLevelGenerator).GetMethod("GetItemWithInventoryInstanceID", BindingFlags.NonPublic | BindingFlags.Instance);
@@ -28,8 +53,8 @@ namespace ShockTape {
 
 			transform.Find("bulletcatch").GetComponent<Shootable>().shot_function = shot_event;
 
-			transform.Find("model/cassette_body").GetComponent<MeshRenderer>().material.SetColor("_BodyColor", new Color(0.65f, 0.65f, 0.65f));
-			transform.Find("model/cassette_labels").GetComponent<MeshRenderer>().material.color = new Color(0.4f, 0.2f, 0);
+			transform.Find("model/cassette_body").GetComponent<MeshRenderer>().material.SetColor("_BodyColor", getBodyColor());
+			transform.Find("model/cassette_labels").GetComponent<MeshRenderer>().material.color = getLabelColor();
 
 			transform.Find("model/tape_roll_left").localScale = Vector3.zero;
 			transform.Find("model/tape_roll_right").localScale = Vector3.zero;

@@ -17,6 +17,7 @@ namespace ShockTape {
 
 		private static ConfigEntry<bool> spawnEnabled;
 		private static ConfigEntry<float> flashbangRarity;
+		public static ConfigEntry<string> difficulty;
 
 		private void Awake() {
 			Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
@@ -33,6 +34,12 @@ namespace ShockTape {
 				"Tape Settings",
 				"Enabled",
 				true
+			);
+
+			difficulty = Config.Bind(
+				new ConfigDefinition("Tape Settings", "Difficulty"),
+				"easy",
+				new ConfigDescription("How difficult is it to spot a flashbang tape", new AcceptableValueList<string>("easy", "hard"))
 			);
 
 			FlashbangTape.GetReflectionMethods();
